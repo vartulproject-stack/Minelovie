@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Open When... ❤️</title>
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Quicksand:wght@500;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Quicksand', sans-serif;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #fce4ec;
+            background-image: 
+                linear-gradient(90deg, rgba(255, 182, 193, 0.4) 50%, transparent 50%),
+                linear-gradient(rgba(255, 182, 193, 0.4) 50%, transparent 50%);
+            background-size: 40px 40px;
+            padding: 20px;
+            overflow-x: hidden;
+        }
+
+        .card-container {
+            background: #fffdf9;
+            width: 100%;
+            max-width: 480px;
+            padding: 35px 25px;
+            border-radius: 4px;
+            box-shadow: 0 15px 35px rgba(186, 112, 131, 0.25);
+            text-align: center;
+            position: relative;
+            clip-path: polygon(
+                0% 0.5%, 5% 0%, 10% 0.8%, 15% 0%, 20% 0.5%, 25% 0%, 30% 0.6%, 35% 0%, 40% 0.4%, 45% 0%, 50% 0.7%, 55% 0%, 60% 0.5%, 65% 0%, 70% 0.8%, 75% 0%, 80% 0.4%, 85% 0%, 90% 0.6%, 95% 0%, 100% 0.5%,
+                100% 99.5%, 95% 100%, 90% 99.3%, 85% 100%, 80% 99.5%, 75% 100%, 70% 99.2%, 65% 100%, 60% 99.6%, 55% 100%, 50% 99.4%, 45% 100%, 40% 99.5%, 35% 100%, 30% 99.3%, 25% 100%, 20% 99.6%, 15% 100%, 10% 99.2%, 5% 100%, 0% 99.5%
+            );
+            border-top: 2px dashed #f48fb1;
+            border-bottom: 2px dashed #f48fb1;
+        }
+
+        .flower-dec {
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            font-size: 26px;
+            opacity: 0.8;
+        }
+
+        .handwriting {
+            font-family: 'Caveat', cursive;
+            color: #ad1457;
+            font-size: 38px;
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 15px;
+        }
+
+        .subtitle {
+            color: #880e4f;
+            font-size: 18px;
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+
+        .btn-container {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 20px;
+            position: relative;
+        }
+
+        .btn {
+            background-color: #fff0f3;
+            color: #ad1457;
+            border: 2px solid #f48fb1;
+            padding: 10px 28px;
+            border-radius: 25px;
+            font-size: 18px;
+            font-family: 'Caveat', cursive;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            transition: all 0.2s ease;
+        }
+
+        .btn:hover {
+            background-color: #f8bbd0;
+            transform: translateY(-2px);
+        }
+
+        .btn-no {
+            position: relative;
+            transition: all 0.2s ease;
+        }
+
+        .gif-box {
+            height: 140px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 15px 0;
+        }
+
+        .gif-box img {
+            max-height: 100%;
+            border-radius: 12px;
+        }
+
+        .screen {
+            display: none;
+            animation: fadeIn 0.4s ease-in-out forwards;
+        }
+
+        .screen.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: scale(0.96); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        .envelopes-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 18px;
+            margin-top: 20px;
+        }
+
+        .envelope-card {
+            background: #880e4f;
+            color: white;
+            padding: 16px 10px;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            position: relative;
+            border: 2px solid #ad1457;
+            box-shadow: 0 5px 12px rgba(136, 14, 79, 0.2);
+            text-align: center;
+        }
+
+        .envelope-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 18px rgba(136, 14, 79, 0.35);
+            background: #ad1457;
+        }
+
+        .envelope-badge {
+            background: rgba(255, 255, 255, 0.2);
+            font-size: 11px;
+            padding: 2px 8px;
+            border-radius: 10px;
+            display: inline-block;
+            margin-bottom: 6px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .envelope-title {
+            font-size: 16px;
+            font-weight: bold;
+        }
+
+        .letter-body {
+            font-size: 16px;
+            color: #4a4a4a;
+            line-height: 1.6;
+            text-align: left;
+            background: #fff5f7;
+            padding: 18px;
+            border-radius: 10px;
+            border-left: 4px solid #f48fb1;
+            margin-bottom: 15px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Background Audio Element -->
+    <audio id="bgSong" loop>
+        <source src="u.mp3" type="audio/mp3">
+    </audio>
+
+    <div class="card-container">
+        <span class="flower-dec">🌸</span>
+
+        <!-- SCREEN 1: What? -->
+        <div id="screen-1" class="screen active">
+            <h1 class="handwriting">I made something for you ❤️</h1>
+            <div class="gif-box">
+                <img src="ak1.gif" alt="Cute Panda Asking">
+            </div>
+            <div class="btn-container">
+                <button class="btn" onclick="startExperience()">what?</button>
+            </div>
+        </div>
+
+        <!-- SCREEN 2: Will you see it? (Yes/No) -->
+        <div id="screen-2" class="screen">
+            <h1 class="handwriting">Will you see it?</h1>
+            <div class="gif-box">
+                <img src="ak2.gif" alt="Cute Bears Bouquet">
+            </div>
+            <div class="btn-container">
+                <button class="btn" onclick="goToScreen(3)">yes</button>
+                <button class="btn btn-no" id="noBtn" onmouseover="dodgeNoButton()" onclick="dodgeNoButton()">no</button>
+            </div>
+        </div>
+
+        <!-- SCREEN 3: Are you ready? -->
+        <div id="screen-3" class="screen">
+            <p class="subtitle">YAY! 🎉</p>
+            <h1 class="handwriting">are you ready for the surprise?</h1>
+            <div class="gif-box">
+                <img src="ak3.gif" alt="Cute Bear Hug">
+            </div>
+            <div class="btn-container">
+                <button class="btn" onclick="goToScreen(4)">yes!! ❤️</button>
+            </div>
+        </div>
+
+        <!-- SCREEN 4: Envelope Grid -->
+        <div id="screen-4" class="screen">
+            <h1 class="handwriting" style="font-size: 32px;">Open When... ✉️</h1>
+            <div class="envelopes-grid">
+                <div class="envelope-card" onclick="openLetter('miss')">
+                    <span class="envelope-badge">Open When</span>
+                    <div class="envelope-title">you miss me</div>
+                </div>
+                <div class="envelope-card" onclick="openLetter('sad')">
+                    <span class="envelope-badge">Open When</span>
+                    <div class="envelope-title">you're sad</div>
+                </div>
+                <div class="envelope-card" onclick="openLetter('happy')">
+                    <span class="envelope-badge">Open When</span>
+                    <div class="envelope-title">you're happy</div>
+                </div>
+                <div class="envelope-card" onclick="openLetter('hug')">
+                    <span class="envelope-badge">Open When</span>
+                    <div class="envelope-title">you need a hug</div>
+                </div>
+                <div class="envelope-card" onclick="openLetter('fight')" style="grid-column: span 2; max-width: 70%; margin: 0 auto;">
+                    <span class="envelope-badge">Open When</span>
+                    <div class="envelope-title">we fight</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SCREEN 5: Letter Content -->
+        <div id="screen-5" class="screen">
+            <div id="letterContainer"></div>
+            <div class="btn-container">
+                <button class="btn" onclick="goToScreen(4)">← Back to envelopes</button>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        function startExperience() {
+            const song = document.getElementById('bgSong');
+            song.play().catch(error => {
+                console.log("Audio play blocked or file missing:", error);
+            });
+            goToScreen(2);
+        }
+
+        function goToScreen(screenNum) {
+            document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+            document.getElementById('screen-' + screenNum).classList.add('active');
+        }
+
+        function dodgeNoButton() {
+            const noBtn = document.getElementById('noBtn');
+            const randomX = (Math.random() - 0.5) * 160;
+            const randomY = (Math.random() - 0.5) * 100;
+            noBtn.style.transform = `translate(${randomX}px, ${randomY}px)`;
+        }
+
+        const letters = {
+            miss: {
+                title: "When You Miss Me 💖",
+                text: "Hey love, if you're reading this, I'm guessing you're missing me. I miss you too, probably more than you know. Close your eyes and imagine me holding your hand, annoying you, and making you laugh. Distance is temporary. What we have isn't. I'm always yours.",
+                gif: "ak4.gif"
+            },
+            sad: {
+                title: "When You're Sad 🥺",
+                text: "Hi baby. I hate the thought of you feeling low. Whatever happened, it doesn't define you. You're stronger, softer, and more beautiful than you realize. Let yourself feel it, but don't stay there. I'm right beside you in this, cheering you on, always.",
+                gif: "ak5.gif"
+            },
+            happy: {
+                title: "When You're Happy 🥰",
+                text: "Seeing you happy makes my whole universe light up! Keep that gorgeous smile on your face forever. Whatever brought this joy to you today, I'm celebrating it with you. Love you to the moon and back!",
+                gif: "ak6.gif"
+            },
+            hug: {
+                title: "When You Need A Hug 🫂",
+                text: "Sending you the biggest, warmest, and squishiest virtual hug right now! Wrap your arms around yourself and imagine it's me holding you tight. You are so loved and safe.",
+                gif: "ak7.gif"
+            },
+            fight: {
+                title: "When We Fight 🤍",
+                text: "If we just argued, take a breath. I never want us to be against each other. It's us versus the problem, always. I love you more than my ego, more than being right. Let's talk, fix it, and choose each other again.",
+                gif: "ak8.gif"
+            }
+        };
+
+        function openLetter(key) {
+            const data = letters[key];
+            const container = document.getElementById('letterContainer');
+
+            container.innerHTML = `
+                <h1 class="handwriting" style="font-size: 30px;">${data.title}</h1>
+                <div class="letter-body">
+                    ${data.text}
+                </div>
+                <div class="gif-box">
+                    <img src="${data.gif}" alt="Letter GIF">
+                </div>
+            `;
+
+            goToScreen(5);
+        }
+    </script>
+</body>
+                  </html>
+                  
